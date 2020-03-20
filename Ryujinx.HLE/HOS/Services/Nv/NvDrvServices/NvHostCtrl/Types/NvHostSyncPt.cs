@@ -10,6 +10,9 @@ namespace Ryujinx.HLE.HOS.Services.Nv.NvDrvServices.NvHostCtrl
     {
         public const int EventsCount = 64;
 
+        public const int VBlank0SyncpointId = 26;
+        public const int VBlank1SyncpointId = 27;
+
         private int[]  _counterMin;
         private int[]  _counterMax;
         private bool[] _clientManaged;
@@ -29,6 +32,10 @@ namespace Ryujinx.HLE.HOS.Services.Nv.NvDrvServices.NvHostCtrl
             _counterMax    = new int[SynchronizationManager.MaxHardwareSyncpoints];
             _clientManaged = new bool[SynchronizationManager.MaxHardwareSyncpoints];
             _assigned      = new bool[SynchronizationManager.MaxHardwareSyncpoints];
+
+            // Reserve VBLANK syncpoints
+            ReserveSyncpointLocked(VBlank0SyncpointId, true);
+            ReserveSyncpointLocked(VBlank1SyncpointId, true);
         }
 
         private void ReserveSyncpointLocked(uint id, bool isClientManaged)
