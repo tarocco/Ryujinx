@@ -38,7 +38,6 @@ using NxStaticObject     = Ryujinx.HLE.Loaders.Executables.NxStaticObject;
 
 using static LibHac.Fs.ApplicationSaveDataManagement;
 
-
 namespace Ryujinx.HLE.HOS
 {
     public class Horizon : IDisposable
