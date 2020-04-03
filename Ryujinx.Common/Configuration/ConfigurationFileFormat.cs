@@ -9,7 +9,6 @@ using Utf8Json.Resolvers;
 using Ryujinx.Configuration.System;
 using Ryujinx.Configuration.Hid;
 using Ryujinx.Common.Configuration.Hid;
-using Ryujinx.UI.Input;
 using Ryujinx.Configuration.Ui;
 
 namespace Ryujinx.Configuration
@@ -19,7 +18,7 @@ namespace Ryujinx.Configuration
         /// <summary>
         /// The current version of the file format
         /// </summary>
-        public const int CurrentVersion = 4;
+        public const int CurrentVersion = 5;
 
         public int Version { get; set; }
 
@@ -129,11 +128,6 @@ namespace Ryujinx.Configuration
         public bool IgnoreMissingServices { get; set; }
 
         /// <summary>
-        ///  The primary controller's type
-        /// </summary>
-        public ControllerType ControllerType { get; set; }
-
-        /// <summary>
         /// Used to toggle columns in the GUI
         /// </summary>
         public GuiColumns GuiColumns { get; set; }
@@ -161,12 +155,12 @@ namespace Ryujinx.Configuration
         /// <summary>
         /// Keyboard control bindings
         /// </summary>
-        public NpadKeyboard KeyboardControls { get; set; }
+        public List<KeyboardConfig> KeyboardConfig { get; set; }
 
         /// <summary>
         /// Controller control bindings
         /// </summary>
-        public NpadController JoystickControls { get; set; }
+        public List<ControllerConfig> ControllerConfig { get; set; }
 
         /// <summary>
         /// Loads a configuration file from disk
@@ -200,7 +194,7 @@ namespace Ryujinx.Configuration
             File.WriteAllText(path, Encoding.UTF8.GetString(data, 0, data.Length).PrettyPrintJson());
         }
 
-        private class ConfigurationEnumFormatter<T> : IJsonFormatter<T>
+        public class ConfigurationEnumFormatter<T> : IJsonFormatter<T>
             where T : struct
         {
             public void Serialize(ref JsonWriter writer, T value, IJsonFormatterResolver formatterResolver)

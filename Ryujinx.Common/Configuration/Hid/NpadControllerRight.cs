@@ -2,7 +2,10 @@
 {
     public struct NpadControllerRight
     {
-        public ControllerInputId Stick;
+        public ControllerInputId StickX;
+        public bool              InvertStickX;
+        public ControllerInputId StickY;
+        public bool              InvertStickY;
         public ControllerInputId StickButton;
         public ControllerInputId ButtonA;
         public ControllerInputId ButtonB;
@@ -11,5 +14,7 @@
         public ControllerInputId ButtonPlus;
         public ControllerInputId ButtonR;
         public ControllerInputId ButtonZr;
+        public ControllerInputId ButtonSl;
+        public ControllerInputId ButtonSr;
     }
 }
