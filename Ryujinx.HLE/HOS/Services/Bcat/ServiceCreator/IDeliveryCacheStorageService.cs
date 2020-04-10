@@ -16,6 +16,22 @@ namespace Ryujinx.HLE.HOS.Services.Bcat.ServiceCreator
             // TODO: Read directories.meta file from the save data (loaded in IServiceCreator) in _deliveryCacheDirectories.
         }
 
+        [Command(0)]
+        public ResultCode CreateFileService(ServiceCtx context)
+        {
+            // TODO: implement
+            MakeObject(context, new IDeliveryCacheFileService());
+            return ResultCode.Success;
+        }
+
+        [Command(1)]
+        public ResultCode CreateDirectoryService(ServiceCtx context)
+        {
+            // TODO: implement
+            MakeObject(context, new IDeliveryCacheDirectoryService());
+            return ResultCode.Success;
+        }
+
         [Command(10)]
         // EnumerateDeliveryCacheDirectory() -> (u32, buffer<nn::bcat::DirectoryName, 6>)
         public ResultCode EnumerateDeliveryCacheDirectory(ServiceCtx context)
