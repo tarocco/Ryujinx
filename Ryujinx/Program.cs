@@ -15,7 +15,7 @@ namespace Ryujinx
         public static string Version { get; private set; }
 
         public static string ConfigurationPath { get; set; }
-		
+
         static void Main(string[] args)
         {
             Toolkit.Init(new ToolkitOptions
